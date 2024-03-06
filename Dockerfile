@@ -17,3 +17,7 @@ RUN git -C /root/abstract-binding-trees checkout 701849e
 ADD everything /root/code
 
 ADD agda /root/.agda
+
+WORKDIR /root/code
+
+RUN make proofs
