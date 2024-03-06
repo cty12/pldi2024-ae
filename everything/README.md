@@ -1,29 +1,24 @@
 (In this document we refer to the surface language as LambdaIFCStar and
 the cast calculus as LambdaIFCc. )
 
-### Building:
+### Building (optional):
+
+If you would like to build the Docker image from scratch,
+from the root of the project repository, run:
+
+```
+docker build --progress=plain -t pldi2024-ae .
+```
 
 It takes about 65 minutes to type check the entire project.
-
-#### Software dependencies for checking proofs:
-
-- [Agda](https://wiki.portal.chalmers.se/agda) `2.6.4`
-- [Standard library](https://github.com/agda/agda-stdlib) `v1.7.3 (0817da6)`
-- [Abstract binding trees](https://github.com/jsiek/abstract-binding-trees/) `4753d00`
-- [GNU Make](https://www.gnu.org/software/make/)
-
-#### Steps:
-
-+ To check the proofs only, run `make proofs`.
-  The type-checker of Agda makes sure everything is correct.
 
 ### Code structure:
 
 Files for noteworthy proofs in the paper:
 
 + [**The Gradual Guarantee**](./src/CC2/GradualGuarantee.agda):
-  **Main result:**
-  the gradual guarantee of LambdaIFCStar (Theorem 18: `gradual-guarantee`)
+  **Our main result:**
+  the gradual guarantee proof of LambdaIFCStar (Theorem 18: `gradual-guarantee`)
 + [Compilation preserves types](./src/CC2/Compile.agda): Lemma 16 and Theorem 17
 + [Progress](./src/CC2/Progress.agda) and [Preservation](./src/CC2/Preservation.agda):
   The proof for type safety of LambdaIFCc (Theorem 12: `progress` and Theorem 13: `pres`)
