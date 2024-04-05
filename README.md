@@ -1,5 +1,7 @@
 # PLDI 2024 Artifact Evaluation: "Quest Complete: the Holy Grail of Gradual Security"
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10789774.svg)](https://doi.org/10.5281/zenodo.10789774)
+
 This research artifact contains meta-theoretic results for LambdaIFCStar,
 a gradual security-typed programming language, mechanized in the Agda
 proof assistant. We have created a Docker container image which contains
