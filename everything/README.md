@@ -5,14 +5,25 @@ the cast calculus as LambdaIFCc. )
 
 It takes about 65 minutes to type check the entire project.
 
-#### Software dependencies for checking proofs:
+#### Using Docker:
+
+If you would like to build the Docker image from scratch,
+from the root of the project repository, run:
+
+```
+docker build --progress=plain -t pldi2024-ae .
+```
+
+#### Not using Docker:
+
+##### Software dependencies for checking proofs:
 
 - [Agda](https://wiki.portal.chalmers.se/agda) `2.6.4`
 - [Standard library](https://github.com/agda/agda-stdlib) `v1.7.3 (0817da6)`
 - [Abstract binding trees](https://github.com/jsiek/abstract-binding-trees/) `4753d00`
 - [GNU Make](https://www.gnu.org/software/make/)
 
-#### Steps:
+##### Steps:
 
 + To check the proofs only, run `make proofs`.
   The type-checker of Agda makes sure everything is correct.
