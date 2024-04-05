@@ -8,6 +8,10 @@ open import CC.Noninterference            using (noninterference)
 open import CC.Compile                    using (compilation-preserves-type)
 
 {- For CC2, both sticky and coercive -}
-open import CC2.Progress
-open import CC2.Preservation
-open import CC2.GradualGuarantee
+open import CC2.Progress                  using (progress)
+open import CC2.Preservation              using (pres)
+open import CC2.GradualGuarantee          using (gradual-guarantee)
+open import CC2.Compile                   using (compilation-preserves-type)
+
+{- For Dynamic IFC -}
+open import Dyn.Noninterference           using (noninterference)

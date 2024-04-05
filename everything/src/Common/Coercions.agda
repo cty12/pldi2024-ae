@@ -93,6 +93,7 @@ coerceᵣ-id (⟦ g ⟧ A ⇒ B) = fun (id g) (coerce-id A) (coerce-id B)
 coerce-id (T of g) = cast (coerceᵣ-id T) (id g)
 
 
+-- used in compilation
 coerce-<:ᵣ : ∀ {S T} → S <:ᵣ T → Castᵣ S ⇒ T
 coerce-<:  : ∀ {A B} → A <:  B → Cast  A ⇒ B
 
@@ -103,6 +104,16 @@ coerce-<:ᵣ {⟦ g₁ ⟧ A ⇒ B} {⟦ g₂ ⟧ C ⇒ D} (<:-fun g₂<:g₁ C<
   fun (coerce-<:ₗ g₂<:g₁) (coerce-<: C<:A) (coerce-<: B<:D)
 coerce-<: (<:-ty g₁<:g₂ S<:T) = cast (coerce-<:ᵣ S<:T) (coerce-<:ₗ g₁<:g₂)
 
+
+inject : ∀ T g → Cast T of g ⇒ T of ⋆
+inject T g = cast (coerceᵣ-id T) (coerce g ⇒⋆)
+
+-- note that the coercion in PC position can be a projection
+fun-to-⋆ : ∀ g₁ A T g₂ g₃ → (p : BlameLabel) → Cast (⟦ g₁ ⟧ A ⇒ (T of g₂) of g₃) ⇒ (⟦ ⋆ ⟧ A ⇒ (T of ⋆) of ⋆)
+fun-to-⋆ g₁ A T g₂ g₃ p = cast (fun (coerceₗ ≾-⋆l p) (coerce-id A) (inject T g₂)) (coerce g₃ ⇒⋆)
+
+ref-to-⋆ : ∀ T g₁ g₂ → (p : BlameLabel) → Cast (Ref (T of g₁) of g₂) ⇒ (Ref (T of ⋆) of ⋆)
+ref-to-⋆ T g₁ g₂ p = cast (ref (cast (coerceᵣ-id T) (coerceₗ ≾-⋆l p)) (cast (coerceᵣ-id T) (coerce g₁ ⇒⋆))) (coerce g₂ ⇒⋆)
 
 stamp-ir : ∀ {A B} (c : Cast A ⇒ B) → Irreducible c → ∀ ℓ → Cast A ⇒ stamp B (l ℓ)
 stamp-ir (cast cᵣ c̅) (ir-base 𝓋 _) ℓ = cast cᵣ (stampₗ c̅ 𝓋 ℓ)
